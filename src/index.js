@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {
   ChakraProvider,
-  ColorModeScript,
   extendTheme,
   theme,
 } from '@chakra-ui/react'
 
 const customTheme = extendTheme({
   colors: {
-    primary: theme.colors.pink,
+    primary: theme.colors.red,
   }
 })
 

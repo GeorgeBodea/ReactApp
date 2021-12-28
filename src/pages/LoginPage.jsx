@@ -5,12 +5,13 @@ import {
 import { Layout } from '../components/Layout'
 
 
-export function Home() {
+export function Loginpage() {
   return (
     <Layout>
       <Heading textAlign='center' my={14}>
-        Home Page
+        Login
       </Heading>
     </Layout>
   )
+
 }

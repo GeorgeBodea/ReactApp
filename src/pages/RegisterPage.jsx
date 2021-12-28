@@ -5,11 +5,11 @@ import {
 import { Layout } from '../components/Layout'
 
 
-export function Home() {
+export function Registerpage() {
   return (
     <Layout>
       <Heading textAlign='center' my={14}>
-        Home Page
+        Register
       </Heading>
     </Layout>
   )
