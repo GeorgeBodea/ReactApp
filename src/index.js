@@ -15,7 +15,7 @@ const customTheme = extendTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-     <ChakraProvider theme={customTheme}>
+    <ChakraProvider theme={customTheme}>
     <App />
     </ChakraProvider>
   </React.StrictMode>,

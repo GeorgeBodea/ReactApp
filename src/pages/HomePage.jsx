@@ -3,14 +3,18 @@ import {
 } from '@chakra-ui/react'
 
 import { Layout } from '../components/Layout'
+import { useAuth } from '../contexts/AppContexts'
 
 
 export function Home() {
+  const { currentUser } = useAuth()
   return (
     <Layout>
       <Heading textAlign='center' my={14}>
         Home Page
       </Heading>
+
+      <p>{`The current user is ${currentUser}`}</p>
     </Layout>
   )
 }
