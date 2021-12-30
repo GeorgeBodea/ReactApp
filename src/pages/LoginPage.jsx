@@ -5,17 +5,29 @@ import {
   FormLabel,
   Heading,
   Input,
-  Stack
+  Stack,
+  useToast
 } from '@chakra-ui/react'
 
 import { Layout } from '../components/Layout'
 import { Card } from '../components/Card' 
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useAuth } from '../contexts/AppContexts'
+
 import React from 'react'
 
 
 export function Loginpage() {
   const navigate = useNavigate()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const toast = useToast()
+
+  const { login } = useAuth()
+
 
   return (
     <Layout>
@@ -27,17 +39,40 @@ export function Loginpage() {
         <chakra.form
           onSubmit={async e => {
             e.preventDefault()
-            // your login logic here
+            
+            
+            setIsSubmitting(true)
+            login(email, password)
+            .then((response) => console.log(response))
+            .catch((error) => 
+                    {console.log(error.message)
+                    toast(
+                      { description: error.message, 
+                        status: 'error',
+                        duration: 6000,
+                        isClosable: true
+                      })
+                    }
+                    )
+            .finally(() => setIsSubmitting(false))
           }}
         >
           <Stack spacing='6'>
             <FormControl id='email'>
               <FormLabel>Email address</FormLabel>
-              <Input name='email' type='email' autoComplete='email' required />
+              <Input 
+                value={email} 
+                onChange={e=> setEmail(e.target.value)}
+                name='email' 
+                type='email' 
+                autoComplete='email' 
+                required />
             </FormControl>
             <FormControl id='password'>
               <FormLabel>Password</FormLabel>
               <Input
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 name='password'
                 type='password'
                 autoComplete='password'
@@ -45,7 +80,7 @@ export function Loginpage() {
               />
             </FormControl>
             {/* <PasswordField /> */}
-            <Button type='submit' colorScheme='primary' size='lg' fontSize='md'>
+            <Button isLoading={isSubmitting} type='submit' colorScheme='primary' size='lg' fontSize='md'>
               Sign in
             </Button>
 

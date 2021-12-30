@@ -12,8 +12,10 @@ import {
 import { Layout } from '../components/Layout'
 import { Card } from '../components/Card' 
 import { useNavigate } from 'react-router-dom'
-import { React, useState } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../contexts/AppContexts'
+
+import React from 'react'
 
 
 export function Registerpage() {
@@ -38,7 +40,6 @@ export function Registerpage() {
             e.preventDefault()
             // your register logic here
 
-            console.log(email, password)
             setIsSubmitting(true)
             register(email, password)
             .then((response) => console.log(response))
@@ -58,8 +59,13 @@ export function Registerpage() {
           <Stack spacing='6'>
             <FormControl id='email'>
               <FormLabel>Email address</FormLabel>
-              <Input value={email} onChange={e=> setEmail(e.target.value)}
-              name='email' type='email' autoComplete='email' required />
+              <Input 
+                value={email} 
+                onChange={e=> setEmail(e.target.value)}
+                name='email' 
+                type='email' 
+                autoComplete='email' 
+                required />
             </FormControl>
 
             <FormControl id='password'>
