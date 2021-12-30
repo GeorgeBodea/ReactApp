@@ -5,9 +5,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import React from 'react'
+import { useAuth } from '../contexts/AppContexts'
 import Navlink from './NavLink'
 
 export function Navbar() {
+  const { logout } = useAuth()
 
   return (
     <Box
@@ -27,7 +29,7 @@ export function Navbar() {
           onClick={async e => {
             e.preventDefault()
             // handle logout
-            alert('logout user')
+            logout()
           }}
         />
     

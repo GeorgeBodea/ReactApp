@@ -11,11 +11,9 @@ import {
 
 import { Layout } from '../components/Layout'
 import { Card } from '../components/Card' 
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import { useAuth } from '../contexts/AppContexts'
-
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useState, useRef, useEffect } from 'react'
 
 
 export function Loginpage() {
@@ -26,8 +24,16 @@ export function Loginpage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
 
-  const { login } = useAuth()
+  const { login, signInWithGoogle } = useAuth()
 
+  const mounted = useRef(false)
+
+  useEffect(() => {
+    mounted.current = true
+    return () => {
+      mounted.current = false
+    }
+  })
 
   return (
     <Layout>
@@ -57,7 +63,7 @@ export function Loginpage() {
                       })
                     }
                     )
-            .finally(() => setIsSubmitting(false))
+            .finally(() => mounted.current && setIsSubmitting(false))
           }}
         >
           <Stack spacing='6'>
@@ -103,7 +109,12 @@ export function Loginpage() {
           variant='outline'
           isFullWidth
           colorScheme='red'
-          onClick={() => alert('sign in with google')}
+          onClick={() => 
+            signInWithGoogle()
+            .then(user => console.log(user))
+            .catch(error => console.log(error))
+            
+          }
         >
           Sign in with Google
         </Button>
