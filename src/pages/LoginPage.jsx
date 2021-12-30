@@ -12,8 +12,9 @@ import {
 import { Layout } from '../components/Layout'
 import { Card } from '../components/Card' 
 import { useAuth } from '../contexts/AppContexts'
+import { useMounted } from "../hooks/useMounted"
 import { useNavigate } from 'react-router-dom'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 
 
 export function Loginpage() {
@@ -26,14 +27,7 @@ export function Loginpage() {
 
   const { login, signInWithGoogle } = useAuth()
 
-  const mounted = useRef(false)
-
-  useEffect(() => {
-    mounted.current = true
-    return () => {
-      mounted.current = false
-    }
-  })
+  const mounted = useMounted()
 
   return (
     <Layout>
@@ -45,7 +39,6 @@ export function Loginpage() {
         <chakra.form
           onSubmit={async e => {
             e.preventDefault()
-            
             
             setIsSubmitting(true)
             login(email, password)

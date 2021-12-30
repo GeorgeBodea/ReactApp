@@ -11,9 +11,10 @@ import {
 
 import { Layout } from '../components/Layout'
 import { Card } from '../components/Card' 
+import { useAuth } from '../contexts/AppContexts'
+import { useMounted } from '../hooks/useMounted'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useAuth } from '../contexts/AppContexts'
 
 import React from 'react'
 
@@ -28,6 +29,7 @@ export function Registerpage() {
 
   const { register } = useAuth()
 
+  const mounted = useMounted()
 
   return (
     <Layout>
@@ -53,7 +55,7 @@ export function Registerpage() {
                       })
                     }
                     )
-            .finally(() => setIsSubmitting(false))
+            .finally(() => mounted.current && setIsSubmitting(false))
           }}
         >
           <Stack spacing='6'>
