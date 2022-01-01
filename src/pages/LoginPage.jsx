@@ -106,7 +106,7 @@ export function Loginpage() {
             signInWithGoogle()
             .then(user => console.log(user))
             .catch(error => console.log(error))
-            
+            .finally(() => navigate('/profile'))
           }
         >
           Sign in with Google

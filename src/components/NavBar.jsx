@@ -9,7 +9,7 @@ import { useAuth } from '../contexts/AppContexts'
 import Navlink from './NavLink'
 
 export function Navbar() {
-  const { logout } = useAuth()
+  const { currentUser, logout } = useAuth()
 
   return (
     <Box
@@ -20,18 +20,26 @@ export function Navbar() {
       <HStack py={4} justifyContent='flex-end' maxW='container.lg' mx='auto'>
         <Navlink to='/' name='Home' size='lg' />
         <Spacer />
-        <Navlink to='/login' name='Login' />
-        <Navlink to='/register' name='Register' />
-        <Navlink to='/profile' name='Profile' />
-        <Navlink
-          to='/logout'
-          name='Logout'
-          onClick={async e => {
-            e.preventDefault()
-            // handle logout
-            logout()
-          }}
-        />
+        { !currentUser ? 
+            <>
+            <Navlink to='/login' name='Login' />
+            <Navlink to='/register' name='Register' />
+            </>
+          :
+            <>
+            <Navlink to='/profile' name='Profile' />
+            <Navlink
+              to='/logout'
+              name='Logout'
+              onClick={async e => {
+                e.preventDefault()
+                // handle logout
+                logout()
+
+              }}
+            />
+            </>
+        }
     
       </HStack>
 
