@@ -44,7 +44,10 @@ export function Registerpage() {
 
             setIsSubmitting(true)
             register(email, password)
-            .then((response) => console.log(response))
+            .then((response) => {
+              console.log(response)
+              navigate('/profile')
+            })
             .catch((error) => 
                     {console.log(error.message)
                     toast(
