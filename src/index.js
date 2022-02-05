@@ -9,7 +9,7 @@ import {
 
 const customTheme = extendTheme({
   colors: {
-    primary: theme.colors.red,
+    primary: theme.colors.blue,
   }
 })
 

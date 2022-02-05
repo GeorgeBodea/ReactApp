@@ -1,5 +1,5 @@
 import React from 'react'
-import AllRoutes from "./components/AppRouters"
+import AllRoutes from "./react_components/AppRouters"
 import { AuthContextProvider } from './contexts/AppContexts';
 
 function App() {

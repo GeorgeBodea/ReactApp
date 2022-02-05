@@ -93,7 +93,7 @@ export function Loginpage() {
         <Button
           variant='outline'
           isFullWidth
-          colorScheme='red'
+          colorScheme='primary'
           onClick={() => 
             signInWithGoogle()
             .catch(error => console.log(error))
