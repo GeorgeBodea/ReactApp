@@ -9,10 +9,9 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-import { Layout } from '../components/Layout'
-import { Card } from '../components/Card' 
+import { Layout } from '../react_components/Layout'
+import { Card } from '../react_components/Card' 
 import { useAuth } from '../contexts/AppContexts'
-import { useMounted } from '../hooks/useMounted'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -24,12 +23,9 @@ export function Registerpage() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
 
   const { register } = useAuth()
-
-  const mounted = useMounted()
 
   return (
     <Layout>
@@ -40,14 +36,9 @@ export function Registerpage() {
         <chakra.form
           onSubmit={async e => {
             e.preventDefault()
-            // your register logic here
 
-            setIsSubmitting(true)
             register(email, password)
-            .then((response) => {
-              console.log(response)
-              navigate('/profile')
-            })
+            .then((response) => { navigate('/profile') })
             .catch((error) => 
                     {console.log(error.message)
                     toast(
@@ -58,7 +49,6 @@ export function Registerpage() {
                       })
                     }
                     )
-            .finally(() => mounted.current && setIsSubmitting(false))
           }}
         >
           <Stack spacing='6'>
@@ -85,7 +75,7 @@ export function Registerpage() {
               />
             </FormControl>
 
-            <Button type='submit' colorScheme='primary' size='lg' fontSize='md' isLoading={isSubmitting}>
+            <Button type='submit' colorScheme='primary' size='lg' fontSize='md'>
               Sign up
             </Button>
           </Stack>

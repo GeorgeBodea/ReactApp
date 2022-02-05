@@ -2,7 +2,7 @@ import {
   Heading
 } from '@chakra-ui/react'
 
-import { Layout } from '../components/Layout'
+import { Layout } from '../react_components/Layout'
 import { useAuth } from '../contexts/AppContexts'
 
 

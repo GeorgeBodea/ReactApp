@@ -9,10 +9,9 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-import { Layout } from '../components/Layout'
-import { Card } from '../components/Card' 
+import { Layout } from '../react_components/Layout'
+import { Card } from '../react_components/Card' 
 import { useAuth } from '../contexts/AppContexts'
-import { useMounted } from "../hooks/useMounted"
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -22,12 +21,10 @@ export function Loginpage() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
 
   const { login, signInWithGoogle } = useAuth()
 
-  const mounted = useMounted()
 
   return (
     <Layout>
@@ -39,15 +36,12 @@ export function Loginpage() {
         <chakra.form
           onSubmit={async e => {
             e.preventDefault()
-            
-            setIsSubmitting(true)
+
             login(email, password)
             .then((response) => 
-            {console.log(response)
-            navigate('/profile')
-            })
+            {navigate('/profile')})
             .catch((error) => 
-                    {console.log(error.message)
+                    {
                     toast(
                       { description: error.message, 
                         status: 'error',
@@ -56,7 +50,6 @@ export function Loginpage() {
                       })
                     }
                     )
-            .finally(() => mounted.current && setIsSubmitting(false))
           }}
         >
           <Stack spacing='6'>
@@ -81,8 +74,7 @@ export function Loginpage() {
                 required
               />
             </FormControl>
-            {/* <PasswordField /> */}
-            <Button isLoading={isSubmitting} type='submit' colorScheme='primary' size='lg' fontSize='md'>
+            <Button type='submit' colorScheme='primary' size='lg' fontSize='md'>
               Sign in
             </Button>
 
@@ -104,7 +96,6 @@ export function Loginpage() {
           colorScheme='red'
           onClick={() => 
             signInWithGoogle()
-            .then(user => console.log(user))
             .catch(error => console.log(error))
             .finally(() => navigate('/profile'))
           }

@@ -1,4 +1,4 @@
-import { Layout } from '../components/Layout'
+import { Layout } from '../react_components/Layout'
 import {  
   chakra,
   Container, 

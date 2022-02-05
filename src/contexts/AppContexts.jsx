@@ -3,7 +3,7 @@ import {
   useContext, 
   useEffect, 
   useState } from 'react'
-import { auth } from '../utils/firebase-config'
+import { auth } from '../firebase_config/firebase'
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
@@ -12,13 +12,7 @@ import {
   GoogleAuthProvider, 
   signInWithPopup} from 'firebase/auth'
 
-const AuthContext = createContext({
-  currentUser: null,
-  register: () => Promise,
-  login: () => Promise,
-  logout: () => Promise,
-  signInWithGoogle: () => Promise
-})
+const AuthContext = createContext({})
 
 export const useAuth = () => useContext(AuthContext)
 
