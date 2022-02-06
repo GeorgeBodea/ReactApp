@@ -1,8 +1,8 @@
-import React from 'react'
+import { ReactElement } from 'react'
 import { NavLink as Link, useLocation } from 'react-router-dom'
 import { Button } from '@chakra-ui/react'
 
-export default function Navlink({ to, name, ...rest }) {
+export default function Navlink( {to, name}:{to: string, name: string, onClick?: any} ): ReactElement {
   const location = useLocation()
 
   const isActive = location.pathname === to
@@ -12,7 +12,6 @@ export default function Navlink({ to, name, ...rest }) {
       <Button
         variant={isActive ? 'outline' : 'ghost'}
         colorScheme={isActive ? 'primary' : 'gray'}
-        {...rest}
       >
         {name}
       </Button>

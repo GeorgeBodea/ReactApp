@@ -15,32 +15,33 @@ import { useAuth } from '../contexts/AppContexts'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-import React from 'react'
 
-
-export function Registerpage() {
+export function Loginpage() {
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const toast = useToast()
 
-  const { register } = useAuth()
+  const { login, signInWithGoogle } = useAuth()
+
 
   return (
     <Layout>
-      <Heading textAlign='center' my={12}>
-        Register
+      <Heading textAlign='center' my={14}>
+        Login
       </Heading>
+
       <Card maxW='md' mx='auto' mt={4}>
         <chakra.form
           onSubmit={async e => {
             e.preventDefault()
 
-            register(email, password)
-            .then((response) => { navigate('/profile') })
-            .catch((error) => 
-                    {console.log(error.message)
+            login(email, password)
+            .then((response: any) => 
+            {navigate('/profile')})
+            .catch((error: any) => 
+                    {
                     toast(
                       { description: error.message, 
                         status: 'error',
@@ -62,7 +63,6 @@ export function Registerpage() {
                 autoComplete='email' 
                 required />
             </FormControl>
-
             <FormControl id='password'>
               <FormLabel>Password</FormLabel>
               <Input
@@ -74,10 +74,10 @@ export function Registerpage() {
                 required
               />
             </FormControl>
-
             <Button type='submit' colorScheme='primary' size='lg' fontSize='md'>
-              Sign up
+              Sign in
             </Button>
+
           </Stack>
         </chakra.form>
 
@@ -86,11 +86,24 @@ export function Registerpage() {
                 isFullWidth 
                 my={6}
                 fontSize='md' 
-                onClick={() => navigate('/login')}>
-            Login
+                onClick={() => navigate('/register')}>
+            Register
         </Button>
-
+    
+        <Button
+          variant='outline'
+          isFullWidth
+          colorScheme='primary'
+          onClick={() => 
+            signInWithGoogle()
+            .catch((error:any) => console.log(error))
+            .finally(() => navigate('/profile'))
+          }
+        >
+          Sign in with Google
+        </Button>
       </Card>
     </Layout>
   )
+
 }

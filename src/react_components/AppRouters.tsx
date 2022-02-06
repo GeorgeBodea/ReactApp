@@ -10,7 +10,7 @@ import { Pagenotfound } from "../pages/PageNotFound"
 import { useAuth } from "../contexts/AppContexts"
 import { Navigate, Outlet } from 'react-router-dom'
 
-export default function AllRoutes(props) {
+export default function AllRoutes(props: any) {
   return (
     <>
       <Router> 

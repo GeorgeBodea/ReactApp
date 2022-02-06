@@ -2,6 +2,7 @@ import {
   Box,
   HStack,
   Spacer,
+  Button,
   useColorModeValue,
 } from '@chakra-ui/react'
 import React from 'react'
@@ -18,7 +19,7 @@ export function Navbar() {
       mb={4}
     >
       <HStack py={4} justifyContent='flex-end' maxW='container.lg' mx='auto'>
-        <Navlink to='/' name='Home' size='lg' />
+        <Navlink to='/' name='Home' />
         <Spacer />
         { !currentUser ? 
             <>
@@ -28,16 +29,17 @@ export function Navbar() {
           :
             <>
             <Navlink to='/profile' name='Profile' />
-            <Navlink
-              to='/logout'
-              name='Logout'
-              onClick={async e => {
-                e.preventDefault()
-                // handle logout
-                logout()
-
-              }}
-            />
+              <Button
+                variant='ghost'
+                onClick={(e: any) => {
+                  e.preventDefault()
+                  // handle logout
+                  logout()
+                }
+                }
+              >
+                Logout
+              </Button>
             </>
         }
     

@@ -38,13 +38,13 @@ export function Home() {
         <Flex w="100%">
          <Spacer></Spacer>
           <a target = "_blank" href="https://www.facebook.com/bodea.george.9"  rel="noreferrer">
-            <IconButton  fontSize='25px' icon={<FaFacebook/>}  isRound='true'></IconButton>
+            <IconButton aria-label="facebook_icon" fontSize='25px' icon={<FaFacebook/>}  isRound={true}></IconButton>
           </a>
           <a target = "_blank" href="https://github.com/GeorgeBodea"  rel="noreferrer">
-            <IconButton  fontSize='25px' icon={<FaGithub/>} isRound='true'></IconButton>
+            <IconButton aria-label="github_icon" fontSize='25px' icon={<FaGithub/>} isRound={true}></IconButton>
           </a>
           <a target = "_blank" href="https://www.linkedin.com/in/george-bodea"  rel="noreferrer">
-            <IconButton  fontSize='25px' icon={<FaLinkedin/>} isRound='true'></IconButton>
+            <IconButton aria-label="linkedin_icon" fontSize='25px' icon={<FaLinkedin/>} isRound={true}></IconButton>
           </a>
         </Flex>
       </VStack>
